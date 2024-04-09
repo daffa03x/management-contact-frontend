@@ -1,8 +1,8 @@
 "use client"; // This is a client component 👈🏽
 
 import { useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { RegisterAPI } from "../../../../services/auth";
 
 export default function Register() {
   const router = useRouter();
@@ -15,21 +15,9 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await axios.post("https://test.raihmimpi.website/api/users", { name, username, password });
-
-      if (response.status === 201) {
-        setMessage("User " + name + " Berhasil Ditambahkan");
-        setStatus("alert-success");
-        router.push("/User");
-      } else {
-        setMessage(response.data.message);
-        setStatus("alert-error");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      setMessage("Internal Server Error");
-      setStatus("alert-error");
+    const response = await RegisterAPI({ name: name, username: username, password: password, setMessage: setMessage, setStatus: setStatus });
+    if (response) {
+      router.push("/User");
     }
   };
 

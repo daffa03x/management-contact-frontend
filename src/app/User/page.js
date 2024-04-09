@@ -1,10 +1,10 @@
 "use client"; // This is a client component 👈🏽
 
 import { useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { LoginAPI } from "../../../services/auth";
 
-export default function Register() {
+export default function Login() {
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,28 +13,11 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      // Mengambil data dari API
-      const response = await axios.post("https://test.raihmimpi.website/api/users/login", { username, password });
-
-      // Periksa apakah response memiliki isi
-      if (response.data.data) {
-        setMessage("Berhasil Login");
-        setStatus("alert-success");
-        const newToken = response.data.data.token;
-
-        // Simpan token ke dalam localStorage
-        localStorage.setItem("token", newToken);
-        // Redirect ke dashboard
-        router.push("/Dashboard");
-      } else {
-        setMessage(response.data.message);
-        setStatus("alert-error");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      setMessage("Internal Server Error");
-      setStatus("alert-error");
+    const response = await LoginAPI({ username: username, password: password, setMessage: setMessage, setStatus: setStatus });
+    console.log(response);
+    if (response) {
+      // Redirect ke dashboard
+      router.push("/Dashboard");
     }
   };
 
