@@ -1,8 +1,8 @@
 "use client"; // This is a client component 👈🏽
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { RegisterAPI } from "../../../../services/auth";
+import { RegisterAPI, getToken } from "../../../../services/auth";
 
 export default function Register() {
   const router = useRouter();
@@ -11,6 +11,12 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
+  useEffect(() => {
+    const token = getToken();
+    if (token) {
+      router.push("/Dashboard");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

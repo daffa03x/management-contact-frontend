@@ -42,3 +42,11 @@ export const LoginAPI = async ({ username, password, setMessage, setStatus }) =>
     setStatus("alert-error");
   }
 };
+
+// Fungsi untuk mengambil token dari local storage
+export const getToken = () => {
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("token");
+  }
+  return null;
+};
