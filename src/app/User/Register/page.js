@@ -11,6 +11,7 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState("");
+
   useEffect(() => {
     const token = getToken();
     if (token) {

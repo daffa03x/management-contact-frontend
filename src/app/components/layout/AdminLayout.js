@@ -8,14 +8,14 @@ const AdminLayout = ({ children, title, currentLink }) => {
       <ul className="menu bg-base-200 w-60 rounded-box">
         <li className="py-4 text-lg font-bold text-center">Contact</li>
         <li>
-          <Link href="Dashboard">Dashboard</Link>
+          <Link href="/Dashboard">Dashboard</Link>
         </li>
         <li>
           <details>
             <summary>User Contact</summary>
             <ul>
               <li>
-                <a>Contact</a>
+                <Link href="/Contact">Contact</Link>
               </li>
               <li>
                 <a>Address</a>
@@ -33,11 +33,12 @@ const AdminLayout = ({ children, title, currentLink }) => {
           <div className="text-3xl">{title}</div>
           <ul>
             <li>
-              <Link href="Dashboard">Dashboard</Link>
+              <Link href="/Dashboard">Dashboard</Link>
             </li>
             <li>{currentLink}</li>
           </ul>
         </div>
+        <hr className="bg-gray-800 my-3 mx-6 h-0.5" />
         <div className="p-6">{children}</div>
         <footer className="fixed bottom-0 left-32 footer footer-center p-4 text-base-content">
           <aside>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import AdminLayout from "../components/layout/AdminLayout";
+import { FaRegUser, FaUserCheck, FaUserGraduate } from "react-icons/fa";
 
 export default function Dashboard() {
   const router = useRouter();
@@ -42,8 +43,32 @@ export default function Dashboard() {
 
   return (
     <AdminLayout title="Dashboard" currentLink="Dashboard">
-      <h1 className="text-2xl font-semibold mb-4">Welcome, {user.name}!</h1>
-      <p className="text-gray-700">Your username: {user.username}</p>
+      <h1 className="text-4xl font-bold text-black mb-4">Selamat Datang, </h1>
+      <h1 className="text-3xl font-bol mb-4">{user.name}</h1>
+      <div className="stats shadow flex justify-center">
+        <div className="stat">
+          <div className="stat-figure text-primary">
+            <FaRegUser />
+          </div>
+          <div className="stat-title">Total User</div>
+          <div className="stat-value text-primary">25.6K</div>
+        </div>
+
+        <div className="stat">
+          <div className="stat-figure text-secondary">
+            <FaUserCheck />
+          </div>
+          <div className="stat-title">Total Contact</div>
+          <div className="stat-value text-secondary">2.6M</div>
+        </div>
+        <div className="stat">
+          <div className="stat-figure text-secondary">
+            <FaUserGraduate />
+          </div>
+          <div className="stat-title">Total Contact</div>
+          <div className="stat-value text-secondary">2.6M</div>
+        </div>
+      </div>
     </AdminLayout>
   );
 }
